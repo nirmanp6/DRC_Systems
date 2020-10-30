@@ -143,7 +143,7 @@ EMAIL_PORT = 587
 
 EMAIL_HOST_USER = 'nirmanp6@gmail.com'
 
-EMAIL_HOST_PASSWORD = 'WTXxtx/126'
+EMAIL_HOST_PASSWORD = 'enter pwd here'
 
 BROKER_URL = 'amqp://nirman:nd123@localhost:5672/sample_host'
 

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+{% load static %}
+<link rel="shortcut icon" href="{%  static 'favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'accounts/file.css' %}">
+{% load custom_tags %}
+    
+	<title>Products</title>
+      <style>
+        /* override Bootstrap's container */
+        .container{
+            display: inline-grid;
+            padding-left:100;
+            padding-right:0;
+            grid-row-gap: 20;
+            margin-right: auto;
+            margin-left: auto;
+         }
+    </style>
+    
+    <div class="header">
+  <a href="/" class="logo">task1</a>
+  <div class="header-right">
+    <a href="/">Home</a>
+    <a class="active" href="/products/">Products</a>
+    {% if not request.user.is_authenticated %}
+    <a href="/accounts/register/">Sign-up</a>
+    <a href="/accounts/login/">Sign-in</a>
+    {% endif %}
+    {% if request.user.is_authenticated %}
+    <a href="/products/cart">Cart<span id="cart_qt" class="badge">{% cart_dynamic user %}</span></a>
+    <a href="/accounts/profile/">Profile</a>
+    <a href="/accounts/logout/">Sign-out</a>
+    {% endif %}
+  </div>
+</div>
+</head>
+<body>
+ 
+  {% block content %}
+  <h1>Products</h1>
+  <h3>
+    
+  <div class="container">
+  {% if product_list %}
+
+  <ul>
+    {% for product in product_list %}
+      
+      <div class="col-lg-3">    
+      <a href="/products/{{ product.slug }}">
+      <img src="{{MEDIA_URL}}{{ product.image.url }}" alt="product-image" width="150" height="150">
+      <br>
+      {{ product.name }}
+      </a>
+      <br>
+      ${{product.price}}
+      <br>
+      </div>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no products in catalog.</p>
+  {% endif %}
+</div>
+  </h3>       
+{% endblock %}
+</div>
+</body>
+</html> 
+
+    

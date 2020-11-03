@@ -47,7 +47,7 @@ class cart_item(models.Model):
     price data is stored here'''
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     products = models.ManyToManyField(product)
-    
+
     quantity = models.IntegerField(null=False, default=1)
     productname = models.CharField(max_length=50, default='')
     productprice = models.FloatField(default=0)
@@ -66,7 +66,7 @@ class cart(models.Model):
     is active right now, quantity 
     field is for dynamic cart'''
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    
+
     cart_id = models.AutoField(primary_key=True)
     items = models.ManyToManyField(cart_item)
     started_date = models.DateTimeField(auto_now_add=True)

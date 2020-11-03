@@ -31,6 +31,7 @@ urlpatterns = [
     path('register/', success),
     path('fail/', failure),
     path('admin/', admin.site.urls),
+    path('api/', include('api.urls')),
     path('accounts/', include('userprofile.urls')),
     path('products/', include('products.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) +\

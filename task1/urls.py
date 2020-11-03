@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.urls import path, include
+from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
@@ -34,5 +35,7 @@ urlpatterns = [
     path('api/', include('api.urls')),
     path('accounts/', include('userprofile.urls')),
     path('products/', include('products.urls')),
+    url(r'^jet/', include('jet.urls', 'jet')),
+    url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) +\
     static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
